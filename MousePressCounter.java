@@ -42,7 +42,9 @@ public class MousePressCounter extends MouseAdapter implements Runnable {
 				int yStart = getHeight() / 2 + stringAscent / 2;
 
 				g.drawString(toDisplay, xStart, yStart);
+                repaint();
 			}
+            
 		};
 		frame.add(panel);
 		panel.addMouseListener(this);
