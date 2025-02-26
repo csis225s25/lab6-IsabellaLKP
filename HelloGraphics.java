@@ -11,10 +11,10 @@ import javax.swing.*;
 
 // a class that extends JPanel to override the paintComponent method,
 // allowing us to interact with Java's graphics system
-class GraphicsPanel extends JPanel {
+class GraphicsPanel extends JPanel  {
 
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g)  {
 
         // first, we should call the paintComponent method we are
         // overriding in JPanel
@@ -23,7 +23,8 @@ class GraphicsPanel extends JPanel {
         // the Graphics object passed to this method has many methods
         // we can use to draw in the area of the panel, one of which
         // allows us to draw a String at a given x,y position
-        g.drawString("Hello, Java Graphics World!", 0, 20);
+        FontMetrics font = g.getFontMetrics();
+        g.drawString("Hello, Java Graphics World!", getWidth()/2-font.stringWidth("Hello, Java Graphics World!")/2, getHeight()/2);
     }
 }
 
