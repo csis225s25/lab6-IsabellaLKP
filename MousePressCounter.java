@@ -13,6 +13,8 @@ import javax.swing.*;
 public class MousePressCounter extends MouseAdapter implements Runnable {
     private int count = 0;
     private String toDisplay = "Mouse Press Count: " + count;
+	JButton reset = new JButton("Reset");
+	
 
 	/**
 	 * The run method to set up the graphical user interface
@@ -22,6 +24,7 @@ public class MousePressCounter extends MouseAdapter implements Runnable {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JFrame frame = new JFrame("MousePressCounter");
 		frame.setPreferredSize(new Dimension(500, 500));
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// construct an anonymous class that extends JPanel,
@@ -31,6 +34,8 @@ public class MousePressCounter extends MouseAdapter implements Runnable {
 			public void paintComponent(Graphics g) {
 
 				super.paintComponent(g);
+						reset.setLocation(frame.getWidth()/2-reset.getWidth()/2, frame.getHeight()-reset.getWidth());
+
 
 				FontMetrics fm = g.getFontMetrics();
 
@@ -47,9 +52,12 @@ public class MousePressCounter extends MouseAdapter implements Runnable {
             
 		};
 		frame.add(panel);
+		panel.add(reset);
+		reset.addMouseListener(this);
 		panel.addMouseListener(this);
 		panel.addMouseMotionListener(this);
 		panel.addMouseWheelListener(this);
+
 
 		// display the window we've created
 		frame.pack();
@@ -60,8 +68,20 @@ public class MousePressCounter extends MouseAdapter implements Runnable {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-        count++;
-        toDisplay = "Mouse press count " + count;
+		if (e.getSource() == reset){
+			count = 0;
+			toDisplay = "Mouse Press Count: " + count;
+		}
+		else{
+			count++;
+        	toDisplay = "Mouse Press Count: " + count;
+		}
+        
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		
+        
 	}
 
 	public static void main(String args[]) {
