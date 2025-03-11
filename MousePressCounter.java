@@ -4,16 +4,19 @@ import javax.swing.*;
 // import javax.swing.event.*;
 
 /**
- * Lab 5 demo of mouse events.
+ * It will create a window that opens up and counts the amount of times you press on the window.
+ * It will also have a reset button to reset the amount of times you clicked.
  * 
  * @author Jim Teresco
  * @author Ira Goldstein
+ * @author Isabella Pafundi
+ * @author Colin Fisher
  * @version Spring 2025
  */
 public class MousePressCounter extends MouseAdapter implements Runnable {
-    private int count = 0;
-    private String toDisplay = "Mouse Press Count: " + count;
-	JButton reset = new JButton("Reset");
+    private int count = 0; //Tracks the amount of clicks
+    private String toDisplay = "Mouse Press Count: " + count; //adds the Mouse Press Count to see
+	JButton reset = new JButton("Reset"); //Adds a reset jbutton
 	
 
 	/**
@@ -68,19 +71,14 @@ public class MousePressCounter extends MouseAdapter implements Runnable {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if (e.getSource() == reset){
+		if (e.getSource() == reset){//if the source is reset button then reset the count.
 			count = 0;
 			toDisplay = "Mouse Press Count: " + count;
 		}
-		else{
+		else{ //otherwise add to the count.
 			count++;
         	toDisplay = "Mouse Press Count: " + count;
 		}
-        
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		
         
 	}
 
